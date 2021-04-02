@@ -90,15 +90,41 @@ public:
     }
 };
 
+int GetMultiNum(vector<int>& input) {
+    int result = -1;
+    for(int i = 0; i < input.size(); ++i) {
+        while(input[i] != i) {
+            if(input[i] == input[input[i]]) {
+                return input[i];
+            } else {
+                int tmpNum = input[i];
+                input[i] = input[tmpNum];
+                input[tmpNum] = tmpNum;
+            }
+        }
+    }
+
+    return result;
+}
+
 int main()
 {
     // /Users/wanglin/Downloads/test1/test.log
     // 从命令行读取文件路径
-    string strFilePath;
-    cin >> strFilePath;
+    // string strFilePath;
+    // cin >> strFilePath;
 
-    int num = LogRsqInfo::GetInstance().GetResultNumWithFilePath(strFilePath);
-    cout << num << endl;
+    // int num = LogRsqInfo::GetInstance().GetResultNumWithFilePath(strFilePath);
+    // cout << num << endl;
+
+    vector<int> result;
+    result.push_back(3);
+    result.push_back(3);
+    result.push_back(4);
+    result.push_back(2);
+    result.push_back(2);
+    int result1 = GetMultiNum(result);
+    cout << result1 << endl;
 
     return 0;
 }
